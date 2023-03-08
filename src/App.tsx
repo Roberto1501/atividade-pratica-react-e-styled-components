@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import Nav from './components/Navbar';
+import './index.css';
+import Div from './components/DivIcons';
+import Texto from './components/DivConteudoIcon';
+import DivCentral from './components/DivImgcentral';
+import Footer from './components/Footer';
+import { ThemeProvider } from 'styled-components';
+import GlobalStyles from "./styles/globalStyles";
+import { darkTheme , lightTheme } from './styles/theme';
 
-function App() {
+
+const App: React.FC = () => {
+
+  const [isDarkTheme, setIsDarkTheme] = useState(false)
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
+      <GlobalStyles />
+      <button onClick={() => setIsDarkTheme(!isDarkTheme)}>
+        Trocar
+      </button>
+      <Nav texto='Minha primeira pagina React' />
+      <Div />
+      <Texto />
+      <DivCentral direction="row-reverse" />
+      <DivCentral direction="row" />
+      <DivCentral direction="row-reverse" />
+      <Nav texto="Contato" />    
+      <Footer />    
+    
+        
+    
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
